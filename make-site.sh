@@ -1,2 +1,6 @@
-sudo docker buildx build --platform linux/amd64,linux/arm64 -t javastraat/dokemon-agent:latest --push .
+sudo docker build -t javastraat/dokemon-site -f Dockerfile .
+sudo docker push javastraat/dokemon-site:latest
+git add *
+git commit -m "fixed some things"
+git push
 
