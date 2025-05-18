@@ -200,7 +200,7 @@ services:
           <li>
             <a
               className="flex items-center gap-2 text-sm"
-              href="https://github.com/dokemon-ng/dokemon/issues"
+              href="https://github.com/productiveops/dokemon/issues"
               target="_blank"
             >
               <FontAwesomeIcon
