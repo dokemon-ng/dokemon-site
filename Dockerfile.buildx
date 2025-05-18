@@ -1,0 +1,92 @@
+# syntax=docker/dockerfile:1
+
+# Base image with multi-platform support
+FROM --platform=$BUILDPLATFORM node:23.11.1-alpine AS base
+
+# Stage 1: Dependencies
+FROM base AS deps
+RUN apk add --no-cache libc6-compat
+WORKDIR /app
+
+# Configure npm for better network resilience
+RUN npm config set fetch-retries 5 && \
+    npm config set fetch-retry-mintimeout 20000 && \
+    npm config set fetch-retry-maxtimeout 120000
+
+# Install npm with retries
+RUN npm install -g npm@latest || \
+    (sleep 30 && npm install -g npm@latest)
+
+# Copy package files
+COPY package.json package-lock.json* yarn.lock* pnpm-lock.yaml* ./
+
+# Install dependencies with retries
+RUN \
+  if [ -f yarn.lock ]; then \
+    yarn global add yarn@latest && \
+    yarn install --frozen-lockfile --production=false || \
+    (sleep 30 && yarn install --frozen-lockfile --production=false); \
+  elif [ -f package-lock.json ]; then \
+    npm ci || \
+    (sleep 30 && npm ci); \
+  elif [ -f pnpm-lock.yaml ]; then \
+    yarn global add pnpm && \
+    pnpm install --frozen-lockfile || \
+    (sleep 30 && pnpm install --frozen-lockfile); \
+  else \
+    echo "Lockfile not found." && exit 1; \
+  fi
+
+# Stage 2: Builder
+FROM base AS builder
+WORKDIR /app
+COPY --from=deps /app/node_modules ./node_modules
+COPY . .
+
+# Disable Next.js telemetry
+ENV NEXT_TELEMETRY_DISABLED 1
+
+# Install build tools with retries
+RUN npm install -g npm@latest || \
+    (sleep 30 && npm install -g npm@latest)
+
+# Install sharp with architecture-specific binaries
+RUN npm install sharp || \
+    (sleep 30 && npm install sharp)
+
+# Update browserslist
+RUN npx update-browserslist-db@latest || \
+    (sleep 30 && npx update-browserslist-db@latest)
+
+# Build with retries
+RUN yarn build || \
+    (sleep 30 && yarn build)
+
+# Stage 3: Runner
+FROM base AS runner
+WORKDIR /app
+
+ENV NODE_ENV production
+ENV NEXT_TELEMETRY_DISABLED 1
+
+# Create non-root user
+RUN addgroup --system --gid 1001 nodejs && \
+    adduser --system --uid 1001 nextjs
+
+COPY --from=builder /app/public ./public
+
+# Set permissions
+RUN mkdir .next && \
+    chown nextjs:nodejs .next
+
+# Copy built files
+COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+
+USER nextjs
+
+EXPOSE 3000
+ENV PORT 3000
+ENV HOSTNAME "0.0.0.0"
+
+CMD ["node", "server.js"]
