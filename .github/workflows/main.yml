@@ -25,4 +25,4 @@ jobs:
           context: "{{defaultContext}}"
           file: Dockerfile
           push: true
-          tags: ghcr.io/productiveops/dokemon-site:latest
+          tags: ghcr.io/javastraat/dokemon-site:latest
