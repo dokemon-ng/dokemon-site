@@ -10,7 +10,7 @@ import { useState, useEffect } from "react";
 const menuItems = [
   { id: 'main', title: 'Main' },
   { id: 'getting-started', title: 'Getting Started' },
-  { id: 'docker-samples', title: 'Docker Samples' },
+  { id: 'compose-samples', title: 'Compose Samples' },
   { id: 'extra', title: 'Extra' },
   { id: 'faq', title: 'FAQ' }
 ];
@@ -231,10 +231,10 @@ services:
             </div>
           </div>
         );
-      case 'docker-samples':
+      case 'compose-samples':
         return (
           <div className="flex flex-col items-center">
-            <h2 className="text-2xl font-bold mb-8 text-center">Docker Samples</h2>
+            <h2 className="text-2xl font-bold mb-8 text-center">Compose Samples</h2>
 
             {/* PiHole Sample Section */}
             <div className="w-full mb-12 px-4 md:px-0">
