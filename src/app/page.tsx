@@ -29,20 +29,20 @@ export default function Home() {
   }, []);
 
 
-  const command = `# Create directory to store Dokemon data
+  const command = `# Create directory to store Dokémon data
 sudo mkdir /dokemondata
 
-# Run Dokemon
+# Run Dokémon
 sudo docker run -p 9090:9090 \\
       -v /dokemondata:/data \\
       -v /var/run/docker.sock:/var/run/docker.sock \\
       --restart unless-stopped \\
       --name dokemon-server -d javastraat/dokemon-server:latest`;
 
-  const volumeCommand = `# Create Docker volume for Dokemon data
+  const volumeCommand = `# Create Docker volume for Dokémon data
 sudo docker volume create dokemondata
 
-# Run Dokemon with volume
+# Run Dokémon with volume
 sudo docker run -p 9090:9090 \\
       -v dokemondata:/data \\
       -v /var/run/docker.sock:/var/run/docker.sock \\
@@ -120,7 +120,7 @@ services:
         return (
           <div className="flex flex-col items-center">
             {/* Main Getting Started Header */}
-            <h2 className="text-2xl font-bold mb-8 text-center">Getting Started with Dokemon</h2>
+            <h2 className="text-2xl font-bold mb-8 text-center">Getting Started with Dokémon</h2>
 
             {/* Directory Version Section */}
             <div className="w-full mb-12 px-4 md:px-0">
@@ -215,12 +215,12 @@ services:
                 Production Usage
               </h3>
               <p className="mb-4 text-base">
-                We recommend that you run Dokemon on a private network whenever
+                We recommend that you run Dokémon on a private network whenever
                 possible.
               </p>
               <p className="mb-6 text-base">
                 If you are running on a VPS with only public access, we recommend
-                that you use an SSL enabled reverse proxy in front of Dokemon. Using Traefik with LetsEncrypt SSL certificate
+                that you use an SSL enabled reverse proxy in front of Dokémon. Using Traefik with LetsEncrypt SSL certificate
               </p>
 
               <h4 className="text-lg font-semibold mb-2">Traefik Configuration Example:</h4>
@@ -314,7 +314,7 @@ services:
               <h4 className="text-lg font-bold mb-2">Manage Multiple Servers</h4>
               <Image
                 src="/screenshot-dokemon-nodes.jpg"
-                alt="Dokemon nodes management interface"
+                alt="Dokémon nodes management interface"
                 width={900}
                 height={500}
                 className="w-full rounded-lg"
@@ -326,7 +326,7 @@ services:
               </h4>
               <Image
                 src="/screenshot-dokemon-variables.jpg"
-                alt="Dokemon variables management interface"
+                alt="Dokémon variables management interface"
                 width={900}
                 height={500}
                 className="w-full rounded-lg"
@@ -336,7 +336,7 @@ services:
               <h4 className="text-lg font-bold mb-2">Deploy Compose Projects</h4>
               <Image
                 src="/screenshot-dokemon-compose-up.jpg"
-                alt="Dokemon compose project deployment interface"
+                alt="Dokémon compose project deployment interface"
                 width={900}
                 height={500}
                 className="w-full rounded-lg"
@@ -348,7 +348,7 @@ services:
               </h4>
               <Image
                 src="/screenshot-dokemon-containers.jpg"
-                alt="Dokemon container management interface"
+                alt="Dokémon container management interface"
                 width={900}
                 height={500}
                 className="w-full rounded-lg"
@@ -365,10 +365,10 @@ services:
         {/* Mobile menu button */}
         <div className="md:hidden bg-gray-800 p-4 flex justify-between items-center">
           <h1>
-            <span className="sr-only">Dokemon</span>
+            <span className="sr-only">Dokémon</span>
             <Image
               src="/logo/dokemon-dark-medium.svg"
-              alt="Dokemon"
+              alt="Dokémon"
               width={150}
               height={40}
             />
@@ -392,10 +392,10 @@ services:
           }`}
         >
           <h1 className="mb-6 hidden md:block">
-            <span className="sr-only">Dokemon</span>
+            <span className="sr-only">Dokémon</span>
             <Image
               src="/logo/dokemon-dark-medium.svg"
-              alt="Dokemon"
+              alt="Dokémon"
               width={200}
               height={50}
             />
