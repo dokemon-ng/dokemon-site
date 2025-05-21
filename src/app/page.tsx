@@ -112,7 +112,7 @@ services:
             
             <div className="w-full mb-12">
               <h3 className="text-xl font-bold mb-4 text-center">Directory Version</h3>
-              <div className="mb-4 w-full text-left">
+              <div className="mb-4 w-full">
                 <pre className="bg-slate-800 p-4 text-sm font-mono overflow-x-auto">
                   {command}
                 </pre>
@@ -132,7 +132,7 @@ services:
 
             <div className="w-full mb-12">
               <h3 className="text-xl font-bold mb-4 text-center">Volume Version</h3>
-              <div className="mb-4 w-full text-left">
+              <div className="mb-4 w-full">
                 <pre className="bg-slate-800 p-4 text-sm font-mono overflow-x-auto">
                   {volumeCommand}
                 </pre>
@@ -152,7 +152,7 @@ services:
 
             <div className="w-full mb-12">
               <h3 className="text-xl font-bold mb-4 text-center">Docker Compose Version</h3>
-              <div className="mb-4 w-full text-left">
+              <div className="mb-4 w-full">
                 <pre className="bg-slate-800 p-4 text-sm font-mono overflow-x-auto">
                   {compose}
                 </pre>
@@ -172,7 +172,7 @@ services:
 
             <div className="w-full mb-12">
               <h3 className="text-xl font-bold mb-4 text-center">Docker Compose Volume Version</h3>
-              <div className="mb-4 w-full text-left">
+              <div className="mb-4 w-full">
                 <pre className="bg-slate-800 p-4 text-sm font-mono overflow-x-auto">
                   {composeVolume}
                 </pre>
