@@ -107,7 +107,9 @@ services:
     switch (activeTab) {
       case 'getting-started':
         return (
+
           <div className="flex flex-col items-center">
+            <div className="mb-16 w-full max-w-4xl">
             <h2 className="text-2xl font-bold mb-8 text-center">Getting Started with Dokémon</h2>
             
             <div className="w-full mb-12">
