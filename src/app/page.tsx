@@ -114,8 +114,7 @@ services:
       - /dokemondata:/data
       - /var/run/docker.sock:/var/run/docker.sock`;
 
-  const piholeCompose = `version: "3"
-
+  const piholeCompose = `
 # More info at https://github.com/pi-hole/docker-pi-hole/ and https://docs.pi-hole.net/
 services:
   pihole:
@@ -138,7 +137,7 @@ services:
       - NET_ADMIN # Recommended but not required (DHCP needs NET_ADMIN)      
     restart: unless-stopped`;
 
-  const openspeedtestCompose = `version: "3"
+  const openspeedtestCompose = `
 services:
     speedtest:
         restart: unless-stopped
