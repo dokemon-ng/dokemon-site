@@ -7,14 +7,26 @@ import Image from "next/image";
 
 export default function Home() {
   const command = `# Create directory to store Dokemon data
-sudo mkdir /dokemondata-server
+sudo mkdir /dokemondata
 
 # Run Dokemon
 sudo docker run -p 9090:9090 \\
-      -v /dokemondata-server:/data \\
+      -v /dokemondata:/data \\
       -v /var/run/docker.sock:/var/run/docker.sock \\
       --restart unless-stopped \\
       --name dokemon-server -d javastraat/dokemon-server:latest`;
+
+  const compose = `version: "3"
+services:
+    dokemon-server:
+        ports:
+            - 9090:9090
+        volumes:
+            - /dokemondata:/data
+            - /var/run/docker.sock:/var/run/docker.sock
+        restart: unless-stopped
+        container_name: dokemon-server
+        image: javastraat/dokemon-server:latest`;
 
   return (
     <>
@@ -37,7 +49,7 @@ sudo docker run -p 9090:9090 \\
         </h3>
         <div className="mb-10">
           <iframe
-            src="https://ghbtns.com/github-btn.html?user=javastraat&repo=dokemon&type=star&count=true&size=large"
+            src="https://ghbtns.com/github-btn.html?user=dokemon-ng&repo=dokemon&type=star&count=true&size=large"
             width="128"
             height="30"
             title="GitHub"
@@ -61,13 +73,32 @@ sudo docker run -p 9090:9090 \\
             Copy
           </button>
         </div>
+
+        <h3 className="text-lg font-bold mb-4">Docker Compose Version</h3>
+        <div className="mb-4 text-xs sm:text-base">
+          <pre className="bg-slate-800 p-4 sm:p-8 md:px-12 focus:outline-none font-mono">
+            {compose}
+          </pre>
+        </div>
+        <div className="mb-8">
+          <button
+            type="button"
+            className="w-24 rounded-md bg-amber-600 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-amber-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-600"
+            onClick={() => {
+              navigator.clipboard.writeText(compose);
+            }}
+          >
+            Copy
+          </button>
+        </div>
+
         <div className="mb-12">
           <a
             className="w-24 rounded-md bg-amber-600 px-2.5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-amber-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-600"
-            href="https://github.com/javastraat/dokemon/wiki"
+            href="https://github.com/dokemon-ng/dokemon/wiki"
             target="_blank"
           >
-            Read the Documentation
+            Wiki Pages
           </a>
         </div>
         <div className="mb-10 text-center">
@@ -127,7 +158,7 @@ sudo docker run -p 9090:9090 \\
             that you use an SSL enabled reverse proxy in front of Dokemon. See{" "}
             <a
               className="underline underline-offset-4"
-              href="https://github.com/javastraat/dokemon"
+              href="https://github.com/dokemon-ng/dokemon"
               target="_blank"
             >
               example configuration with Traefik.
@@ -169,7 +200,7 @@ sudo docker run -p 9090:9090 \\
           <li>
             <a
               className="flex items-center gap-2 text-sm"
-              href="https://github.com/javastraat/dokemon/issues"
+              href="https://github.com/dokemon-ng/Software/issues"
               target="_blank"
             >
               <FontAwesomeIcon
