@@ -215,9 +215,9 @@ services:
               <p className="mb-6 text-base">
                 Note: This is a sample configuration. Please modify it as per your requirements.
               </p>
-              
-              <div className="mb-4 w-full">
-                <pre className="bg-slate-800 p-4 text-sm font-mono overflow-x-auto">
+             
+              <div className="mb-4 w-full text-left">
+                <pre className="bg-slate-800 p-4 text-sm font-mono overflow-x-auto"> 
                   {traefikConfig}
                 </pre>
               </div>
