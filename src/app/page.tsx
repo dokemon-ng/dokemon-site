@@ -255,20 +255,6 @@ services:
                   Copy
                 </button>
               </div>
-              <div className="text-center max-w-2xl mx-auto">
-                <h4 className="text-lg font-semibold mb-2">Deployment Instructions:</h4>
-                <ol className="list-decimal pl-5 space-y-2 text-base text-left">
-                  <li>Create directories for persistent storage: <code className="bg-gray-700 px-1 py-0.5 rounded text-sm">sudo mkdir -p /pihole/etc-pihole /pihole/etc-dnsmasq.d</code></li>
-                  <li>Create a file named <code className="bg-gray-700 px-1 py-0.5 rounded text-sm">docker-compose.yml</code> with the above content</li>
-                  <li>Replace <code className="bg-gray-700 px-1 py-0.5 rounded text-sm">YOURPASSWORD</code> with a secure password</li>
-                  <li>Adjust the timezone (<code className="bg-gray-700 px-1 py-0.5 rounded text-sm">Europe/Amsterdam</code>) if needed</li>
-                  <li>Run <code className="bg-gray-700 px-1 py-0.5 rounded text-sm">docker compose up -d</code></li>
-                  <li>Access the web interface at <code className="bg-gray-700 px-1 py-0.5 rounded text-sm">http://your-server-ip:8008</code></li>
-                </ol>
-                <p className="mt-4 text-base">
-                  Note: If you&apos;re running this on a home network with DHCP, consider using <code className="bg-gray-700 px-1 py-0.5 rounded text-sm">network_mode: &quot;host&quot;</code> instead of the port mappings.
-                </p>
-              </div>
             </div>
           </div>
         );
