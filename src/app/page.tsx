@@ -123,7 +123,7 @@ services:
       case 'extra':
         return (
           <div className="flex flex-col items-center">
-            <div className="mb-16 max-w-2xl">
+            <div className="mb-16 w-full max-w-2xl">
               <h3 className="text-lg font-bold mb-4 text-center">
                 Production Usage
               </h3>
@@ -136,22 +136,34 @@ services:
                 that you use an SSL enabled reverse proxy in front of Dokemon. Using Traefik with LetsEncrypt SSL certificate
               </p>
               
-              <h4 className="font-semibold mb-2">Traefik Configuration Example:</h4>
-              <p className="mb-4 text-sm">
+              <h4 className="font-semibold mb-2 text-center">Traefik Configuration Example:</h4>
+              <p className="mb-4 text-sm text-center">
                 This is an example configuration for running Dokémon behind Traefik with LetsEncrypt SSL certificate.
                 <br /><br />
                 Note: This is a sample configuration. Please modify it as per your requirements.
               </p>
               
               <div className="mb-4 text-xs sm:text-base">
-                <pre className="bg-slate-800 p-4 sm:p-8 md:px-12 focus:outline-none font-mono">
+                <pre className="bg-slate-800 p-4 sm:p-8 md:px-12 focus:outline-none font-mono overflow-x-auto">
                   {traefikConfig}
                 </pre>
               </div>
               
+              <div className="mb-8 flex justify-center">
+                <button
+                  type="button"
+                  className="w-24 rounded-md bg-amber-600 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-amber-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-600"
+                  onClick={() => {
+                    navigator.clipboard.writeText(traefikConfig);
+                  }}
+                >
+                  Copy
+                </button>
+              </div>
+              
               <div className="mt-6">
-                <h4 className="font-semibold mb-2">Deployment Instructions:</h4>
-                <ol className="list-decimal pl-5 space-y-2">
+                <h4 className="font-semibold mb-2 text-center">Deployment Instructions:</h4>
+                <ol className="list-decimal pl-5 space-y-2 max-w-xl mx-auto">
                   <li>In the DNS settings for your domain, add an A record for the Host which you have mentioned in the above config</li>
                   <li>The A record should point to the public IP address of your virtual machine</li>
                   <li>Create a file named compose.yaml on your server</li>
@@ -161,7 +173,7 @@ services:
                   <li>Run <code className="bg-gray-700 px-1 py-0.5 rounded">docker compose up -d</code></li>
                   <li>Open <code className="bg-gray-700 px-1 py-0.5 rounded">https://dokemon.example.com</code> (substitute your URL here) in the browser</li>
                 </ol>
-                <p className="mt-4 text-sm">
+                <p className="mt-4 text-sm text-center">
                   It can take a few seconds for the SSL certificate to be provisioned. If you get an error related to SSL, please wait for a few moments and then refresh your browser.
                 </p>
               </div>
@@ -170,18 +182,20 @@ services:
         );
       case 'faq':
         return (
-          <div className="flex flex-col items-center max-w-2xl">
-            <h3 className="text-lg font-bold mb-6 text-center">Frequently Asked Questions</h3>
-            <ul className="text-left w-full space-y-6">
-              <li>
-                <h4 className="font-semibold">Is this free for commercial use?</h4>
-                <p>Yes.</p>
-              </li>
-              <li>
-                <h4 className="font-semibold">Does this support Kubernetes and Docker Swarm?</h4>
-                <p>No, currently we only support Standalone Docker on Linux.</p>
-              </li>
-            </ul>
+          <div className="flex flex-col items-center">
+            <div className="w-full max-w-2xl">
+              <h3 className="text-lg font-bold mb-6 text-center">Frequently Asked Questions</h3>
+              <ul className="text-left space-y-6">
+                <li className="text-center">
+                  <h4 className="font-semibold">Is this free for commercial use?</h4>
+                  <p>Yes.</p>
+                </li>
+                <li className="text-center">
+                  <h4 className="font-semibold">Does this support Kubernetes and Docker Swarm?</h4>
+                  <p>No, currently we only support Standalone Docker on Linux.</p>
+                </li>
+              </ul>
+            </div>
           </div>
         );
       case 'main':
