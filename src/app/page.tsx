@@ -195,8 +195,8 @@ services:
   return (
     <>
       <main className="flex min-h-screen">
-        {/* Sidebar Menu */}
-        <div className="w-64 bg-gray-800 p-4 flex flex-col">
+        {/* Sidebar Menu - Fixed height */}
+        <div className="w-64 bg-gray-800 p-4 flex flex-col fixed h-screen">
           <h1 className="mb-6">
             <span className="sr-only">Dokemon</span>
             <Image
@@ -206,7 +206,7 @@ services:
               height={50}
             />
           </h1>
-          <nav className="flex-1">
+          <nav className="flex-1 overflow-y-auto">
             <ul className="space-y-2">
               {menuItems.map((item) => (
                 <li key={item.id}>
@@ -220,7 +220,7 @@ services:
               ))}
             </ul>
           </nav>
-          <div className="mt-auto">
+          <div className="mt-auto pb-4">
             <ul className="flex flex-col gap-4">
               <li>
                 <a
@@ -268,8 +268,8 @@ services:
           </div>
         </div>
 
-        {/* Main Content */}
-        <div className="flex-1 p-8 overflow-y-auto">
+        {/* Main Content - Scrollable */}
+        <div className="flex-1 ml-64 p-8 overflow-y-auto">
           <div className="max-w-6xl mx-auto">
             {renderContent()}
           </div>
