@@ -149,6 +149,7 @@ services:
 `;
 
   const dokemonsiteCompose = `
+services:
   dokemon-site:
     image: javastraat/dokemon-site:latest
     container_name: dokemon-site
