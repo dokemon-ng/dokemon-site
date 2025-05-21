@@ -10,7 +10,6 @@ import { useState, useEffect } from "react";
 const menuItems = [
   { id: 'main', title: 'Main' },
   { id: 'getting-started', title: 'Getting Started' },
-  { id: 'docker-samples', title: 'Docker Samples' },
   { id: 'extra', title: 'Extra' },
   { id: 'faq', title: 'FAQ' }
 ];
@@ -28,6 +27,7 @@ export default function Home() {
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
+
 
   const command = `# Create directory to store Dokémon data
 sudo mkdir /dokemondata
@@ -113,30 +113,6 @@ services:
     volumes:
       - /dokemondata:/data
       - /var/run/docker.sock:/var/run/docker.sock`;
-
-  const piholeCompose = `version: "3"
-
-# More info at https://github.com/pi-hole/docker-pi-hole/ and https://docs.pi-hole.net/
-services:
-  pihole:
-    container_name: pihole
-    image: pihole/pihole:latest
-    # For DHCP it is recommended to remove these ports and instead add: network_mode: "host"
-    ports:
-      - "53:53/tcp"
-      - "53:53/udp"
-      - "8008:80/tcp"
-    environment:
-      TZ: 'Europe/Amsterdam'
-      WEBPASSWORD: 'YOURPASSWORD'
-    # Volumes store your data between container upgrades
-    volumes:
-      - '/pihole/etc-pihole:/etc/pihole'
-      - '/pihole/etc-dnsmasq.d:/etc/dnsmasq.d'    
-    #   https://github.com/pi-hole/docker-pi-hole#note-on-capabilities
-    cap_add:
-      - NET_ADMIN # Recommended but not required (DHCP needs NET_ADMIN)      
-    restart: unless-stopped`;
 
   const renderContent = () => {
     switch (activeTab) {
@@ -231,47 +207,6 @@ services:
             </div>
           </div>
         );
-      case 'docker-samples':
-        return (
-          <div className="flex flex-col items-center">
-            <h2 className="text-2xl font-bold mb-8 text-center">Docker Samples</h2>
-
-            {/* PiHole Sample Section */}
-            <div className="w-full mb-12 px-4 md:px-0">
-              <h3 className="text-xl font-bold mb-4 text-center">PiHole - Network-wide Ad Blocking</h3>
-              <div className="mb-4 w-full">
-                <pre className="bg-slate-800 p-4 text-sm font-mono overflow-x-auto rounded">
-                  {piholeCompose}
-                </pre>
-              </div>
-              <div className="mb-8 flex justify-center">
-                <button
-                  type="button"
-                  className="w-24 rounded-md bg-amber-600 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-amber-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-600"
-                  onClick={() => {
-                    navigator.clipboard.writeText(piholeCompose);
-                  }}
-                >
-                  Copy
-                </button>
-              </div>
-              <div className="text-center max-w-2xl mx-auto">
-                <h4 className="text-lg font-semibold mb-2">Deployment Instructions:</h4>
-                <ol className="list-decimal pl-5 space-y-2 text-base text-left">
-                  <li>Create directories for persistent storage: <code className="bg-gray-700 px-1 py-0.5 rounded text-sm">sudo mkdir -p /pihole/etc-pihole /pihole/etc-dnsmasq.d</code></li>
-                  <li>Create a file named <code className="bg-gray-700 px-1 py-0.5 rounded text-sm">docker-compose.yml</code> with the above content</li>
-                  <li>Replace <code className="bg-gray-700 px-1 py-0.5 rounded text-sm">YOURPASSWORD</code> with a secure password</li>
-                  <li>Adjust the timezone (<code className="bg-gray-700 px-1 py-0.5 rounded text-sm">Europe/Amsterdam</code>) if needed</li>
-                  <li>Run <code className="bg-gray-700 px-1 py-0.5 rounded text-sm">docker compose up -d</code></li>
-                  <li>Access the web interface at <code className="bg-gray-700 px-1 py-0.5 rounded text-sm">http://your-server-ip:8008</code></li>
-                </ol>
-                <p className="mt-4 text-base">
-                  Note: If you're running this on a home network with DHCP, consider using <code className="bg-gray-700 px-1 py-0.5 rounded text-sm">network_mode: "host"</code> instead of the port mappings.
-                </p>
-              </div>
-            </div>
-          </div>
-        );
       case 'extra':
         return (
           <div className="flex flex-col items-center">
@@ -348,9 +283,9 @@ services:
                 </li>
                 <li className="text-center">
                   <h4 className="text-lg font-semibold">Why is it named Dokémon?</h4>
-                  <p className="text-base">Docker Manager → DockMan → DocMan → Dokémon<br />
-                    That&apos;s how we arrived at the name! Doesn&apos;t really mean anything.</p>
-                </li>
+		<p className="text-base">Docker Manager → DockMan → DocMan → Dokémon<br />
+		  That&apos;s how we arrived at the name! Doesn&apos;t really mean anything.</p>
+		</li>
               </ul>
             </div>
           </div>
