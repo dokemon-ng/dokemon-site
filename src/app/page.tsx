@@ -10,7 +10,8 @@ import { useState } from "react";
 const menuItems = [
   { id: 'main', title: 'Main' },
   { id: 'getting-started', title: 'Getting Started' },
-  { id: 'extra', title: 'Extra' }
+  { id: 'extra', title: 'Extra' },
+  { id: 'faq', title: 'FAQ' }
 ];
 
 export default function Home() {
@@ -37,6 +38,44 @@ services:
         restart: unless-stopped
         container_name: dokemon-server
         image: javastraat/dokemon-server:latest`;
+
+  const traefikConfig = `version: "3.3"
+
+services:
+  traefik:
+    image: "traefik:v2.10"
+    container_name: "traefik"
+    command:
+      - "--log.level=DEBUG"
+      - "--accesslog=true"
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.websecure.address=:443"
+      - "--certificatesresolvers.dokemon.acme.tlschallenge=true"
+      - "--certificatesresolvers.dokemon.acme.email=your.email@example.com"
+      - "--certificatesresolvers.dokemon.acme.storage=/letsencrypt/dokemon.json"
+    ports:
+      - "443:443"
+      - "8080:8080"
+    volumes:
+      - "./letsencrypt:/letsencrypt"
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+
+  dokemon:
+    image: javastraat/dokemon-server:latest
+    container_name: dokemon-server
+    restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.dokemon.rule=Host(\`dokemon.example.com\`)"
+      - "traefik.http.routers.dokemon.entrypoints=websecure"
+      - "traefik.http.routers.dokemon.tls.certresolver=dokemon"
+    ports:
+      - 9090:9090
+    volumes:
+      - /dokemondata:/data
+      - /var/run/docker.sock:/var/run/docker.sock`;
 
   // Render content based on active tab
   const renderContent = () => {
@@ -88,39 +127,61 @@ services:
               <h3 className="text-lg font-bold mb-4 text-center">
                 Production Usage
               </h3>
-              <p className="mb-2">
+              <p className="mb-4">
                 We recommend that you run Dokemon on a private network whenever
                 possible.
               </p>
-              <p>
+              <p className="mb-6">
                 If you are running on a VPS with only public access, we recommend
-                that you use an SSL enabled reverse proxy in front of Dokemon. See{" "}
-                <a
-                  className="underline underline-offset-4"
-                  href="https://github.com/dokemon-ng/dokemon"
-                  target="_blank"
-                >
-                  example configuration with Traefik.
-                </a>
+                that you use an SSL enabled reverse proxy in front of Dokemon. Using Traefik with LetsEncrypt SSL certificate
               </p>
+              
+              <h4 className="font-semibold mb-2">Traefik Configuration Example:</h4>
+              <p className="mb-4 text-sm">
+                This is an example configuration for running Dokémon behind Traefik with LetsEncrypt SSL certificate.
+                <br /><br />
+                Note: This is a sample configuration. Please modify it as per your requirements.
+              </p>
+              
+              <div className="mb-4 text-xs sm:text-base">
+                <pre className="bg-slate-800 p-4 sm:p-8 md:px-12 focus:outline-none font-mono">
+                  {traefikConfig}
+                </pre>
+              </div>
+              
+              <div className="mt-6">
+                <h4 className="font-semibold mb-2">Deployment Instructions:</h4>
+                <ol className="list-decimal pl-5 space-y-2">
+                  <li>In the DNS settings for your domain, add an A record for the Host which you have mentioned in the above config</li>
+                  <li>The A record should point to the public IP address of your virtual machine</li>
+                  <li>Create a file named compose.yaml on your server</li>
+                  <li>Copy and paste the above YAML definition into the file</li>
+                  <li>Modify the email and host. Make any other changes as per your requirements</li>
+                  <li>Run <code className="bg-gray-700 px-1 py-0.5 rounded">mkdir ./letsencrypt && mkdir /dokemondata</code></li>
+                  <li>Run <code className="bg-gray-700 px-1 py-0.5 rounded">docker compose up -d</code></li>
+                  <li>Open <code className="bg-gray-700 px-1 py-0.5 rounded">https://dokemon.example.com</code> (substitute your URL here) in the browser</li>
+                </ol>
+                <p className="mt-4 text-sm">
+                  It can take a few seconds for the SSL certificate to be provisioned. If you get an error related to SSL, please wait for a few moments and then refresh your browser.
+                </p>
+              </div>
             </div>
-            <div className="max-w-2xl">
-              <h3 className="text-lg font-bold mb-4 text-center">FAQ</h3>
-              <ul className="text-left flex flex-col gap-6">
-                <li>
-                  <h4 className="font-semibold">
-                    Is this free for commercial use?
-                  </h4>
-                  <p>Yes.</p>
-                </li>
-                <li>
-                  <h4 className="font-semibold">
-                    Does this support Kubernetes and Docker Swarm?
-                  </h4>
-                  <p>No, currently we only support Standalone Docker on Linux.</p>
-                </li>
-              </ul>
-            </div>
+          </div>
+        );
+      case 'faq':
+        return (
+          <div className="flex flex-col items-center max-w-2xl">
+            <h3 className="text-lg font-bold mb-6 text-center">Frequently Asked Questions</h3>
+            <ul className="text-left w-full space-y-6">
+              <li>
+                <h4 className="font-semibold">Is this free for commercial use?</h4>
+                <p>Yes.</p>
+              </li>
+              <li>
+                <h4 className="font-semibold">Does this support Kubernetes and Docker Swarm?</h4>
+                <p>No, currently we only support Standalone Docker on Linux.</p>
+              </li>
+            </ul>
           </div>
         );
       case 'main':
@@ -239,6 +300,20 @@ services:
               <li>
                 <a
                   className="flex items-center gap-2 text-sm text-gray-300 hover:text-white"
+                  href="https://github.com/dokemon-ng/Software/issues"
+                  target="_blank"
+                >
+                  <FontAwesomeIcon
+                    icon={faGithub}
+                    className="inline-block w-5 h-5"
+                    style={{ color: "#ddd" }}
+                  />{" "}
+                  Report Issues
+                </a>
+              </li>
+              <li>
+                <a
+                  className="flex items-center gap-2 text-sm text-gray-300 hover:text-white"
                   href="https://discord.gg/Nfevu4gJVG"
                   target="_blank"
                 >
@@ -248,20 +323,6 @@ services:
                     style={{ color: "#5865f2" }}
                   />{" "}
                   Community Support
-                </a>
-              </li>
-              <li>
-                <a
-                  className="flex items-center gap-2 text-sm text-gray-300 hover:text-white"
-                  href="https://github.com/dokemon-ng/dokemon/issues"
-                  target="_blank"
-                >
-                  <FontAwesomeIcon
-                    icon={faGithub}
-                    className="inline-block w-5 h-5"
-                    style={{ color: "#ddd" }}
-                  />{" "}
-                  Report Issues
                 </a>
               </li>
             </ul>
