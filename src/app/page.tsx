@@ -206,7 +206,6 @@ services:
               <h3 className="text-xl font-bold mb-4 text-center">
                 Production Usage
               </h3>
-              <div className="bg-slate-800 p-6 rounded-lg">
                 <p className="mb-4 text-base">
                   We recommend that you run Dokemon on a private network whenever
                   possible.
@@ -215,7 +214,6 @@ services:
                   If you are running on a VPS with only public access, we recommend
                   that you use an SSL enabled reverse proxy in front of Dokemon. Using Traefik with LetsEncrypt SSL certificate
                 </p>
-              </div>
             </div>
 
             {/* Traefik Configuration Block */}
