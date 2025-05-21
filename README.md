@@ -30,5 +30,3 @@ If you prefer to run the site in a container:
 ```bash
 docker run -d --name dokemon-site -p 3000:3000 javastraat/dokemon-site:latest
 ```
-=======
-```
