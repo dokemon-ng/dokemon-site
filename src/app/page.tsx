@@ -228,12 +228,12 @@ services:
             </div>
             
             {/* Configuration Code Block */}
-            <div className="mb-4 w-full">
-              <pre className="bg-slate-800 p-4 text-sm font-mono overflow-x-auto rounded-lg">
-                {traefikConfig}
-              </pre>
-            </div>
-            
+              <div className="mb-4 w-full text-left">
+                <pre className="bg-slate-800 p-4 text-sm font-mono overflow-x-auto">
+                  {traefikConfig}
+                </pre>
+              </div>
+               
             <div className="mb-8 flex justify-center">
               <button
                 type="button"
