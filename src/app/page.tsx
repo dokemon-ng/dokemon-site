@@ -93,7 +93,13 @@ services:
       case 'getting-started':
         return (
           <div className="flex flex-col items-center">
-            <h3 className="text-xl font-bold mb-4">Get Started Now</h3>
+            <h3 className="text-xl font-bold mb-4">Getting Started Now</h3>
+            <div className="mb-4 w-full">
+              <pre className="bg-slate-800 p-4 text-sm font-mono overflow-x-auto">
+                {command}
+              </pre>
+            </div>
+            <h3 className="text-xl font-bold mb-4">Dokemon with Local Storage</h3>
             <div className="mb-4 w-full">
               <pre className="bg-slate-800 p-4 text-sm font-mono overflow-x-auto">
                 {command}
@@ -111,7 +117,7 @@ services:
               </button>
             </div>
 
-            <h3 className="text-xl font-bold mb-4">Docker Volume Version</h3>
+            <h3 className="text-xl font-bold mb-4">Dokemon Volume Version</h3>
             <div className="mb-4 w-full">
               <pre className="bg-slate-800 p-4 text-sm font-mono overflow-x-auto">
                 {volumeCommand}
