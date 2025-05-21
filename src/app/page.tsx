@@ -139,13 +139,13 @@ services:
 
   const openspeedtestCompose = `
 services:
-    speedtest:
-        restart: unless-stopped
-        container_name: openspeedtest
-        ports:
-            - '3000:3000'
-            - '3001:3001'
-        image: openspeedtest/latest
+  speedtest:
+    image: openspeedtest/latest
+    container_name: openspeedtest
+    ports:
+      - '3000:3000'
+      - '3001:3001'
+    restart: unless-stopped
 `;
 
   const dokemonsiteCompose = `
