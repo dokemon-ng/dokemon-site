@@ -283,9 +283,8 @@ services:
                 </li>
                 <li className="text-center">
                   <h4 className="text-lg font-semibold">Why is it named Dokémon?</h4>
-		{/* eslint-disable-next-line react/no-unescaped-entities */}
 		<p className="text-base">Docker Manager → DockMan → DocMan → Dokémon<br />
-		  That's how we arrived at the name! Doesn't really mean anything.</p>
+		  That&apos;s how we arrived at the name! Doesn&apos;t really mean anything.</p>
 		</li>
               </ul>
             </div>
