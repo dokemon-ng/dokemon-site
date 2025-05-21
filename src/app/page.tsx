@@ -92,6 +92,7 @@ services:
     switch (activeTab) {
       case 'getting-started':
         return (
+ 	  <h3 className="text-xl font-bold mb-4">Get Started Now</h3>
           <div className="flex flex-col items-center">
             <h3 className="text-xl font-bold mb-4">Get Started Now</h3>
             <div className="mb-4 w-full">
