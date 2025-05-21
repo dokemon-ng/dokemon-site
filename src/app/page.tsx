@@ -17,20 +17,20 @@ const menuItems = [
 export default function Home() {
   const [activeTab, setActiveTab] = useState('main');
 
-  const command = `# Create directory to store Dokemon data
+  const command = `# Create directory to store Dokémon data
 sudo mkdir /dokemondata
 
-# Run Dokemon
+# Run Dokémon
 sudo docker run -p 9090:9090 \\
       -v /dokemondata:/data \\
       -v /var/run/docker.sock:/var/run/docker.sock \\
       --restart unless-stopped \\
       --name dokemon-server -d javastraat/dokemon-server:latest`;
 
-  const volumeCommand = `# Create Docker volume for Dokemon data
+  const volumeCommand = `# Create Docker volume for Dokémon data
 sudo docker volume create dokemondata
 
-# Run Dokemon with volume
+# Run Dokémon with volume
 sudo docker run -p 9090:9090 \\
       -v dokemondata:/data \\
       -v /var/run/docker.sock:/var/run/docker.sock \\
@@ -108,10 +108,8 @@ services:
       case 'getting-started':
         return (
           <div className="flex flex-col items-center">
-            {/* Main Getting Started Header */}
-            <h2 className="text-2xl font-bold mb-8 text-center">Getting Started with Dokemon</h2>
+            <h2 className="text-2xl font-bold mb-8 text-center">Getting Started with Dokémon</h2>
             
-            {/* Directory Version Section */}
             <div className="w-full mb-12">
               <h3 className="text-xl font-bold mb-4 text-center">Directory Version</h3>
               <div className="mb-4 w-full">
@@ -132,7 +130,6 @@ services:
               </div>
             </div>
 
-            {/* Volume Version Section */}
             <div className="w-full mb-12">
               <h3 className="text-xl font-bold mb-4 text-center">Volume Version</h3>
               <div className="mb-4 w-full">
@@ -153,7 +150,6 @@ services:
               </div>
             </div>
 
-            {/* Docker Compose Section */}
             <div className="w-full mb-12">
               <h3 className="text-xl font-bold mb-4 text-center">Docker Compose Version</h3>
               <div className="mb-4 w-full">
@@ -174,7 +170,6 @@ services:
               </div>
             </div>
 
-            {/* Docker Compose Volume Section */}
             <div className="w-full mb-12">
               <h3 className="text-xl font-bold mb-4 text-center">Docker Compose Volume Version</h3>
               <div className="mb-4 w-full">
@@ -197,85 +192,73 @@ services:
           </div>
         );
 
-    case 'extra':
-      return (
-        <div className="flex flex-col items-center">
-          <div className="mb-16 w-full max-w-2xl mx-auto">
-            {/* Production Usage Block */}
-            <div className="mb-8">
+      case 'extra':
+        return (
+          <div className="flex flex-col items-center">
+            <div className="mb-16 w-full max-w-4xl">
               <h3 className="text-xl font-bold mb-4 text-center">
                 Production Usage
               </h3>
-                <p className="mb-4 text-base">
-                  We recommend that you run Dokemon on a private network whenever
-                  possible.
-                </p>
-                <p className="text-base">
-                  If you are running on a VPS with only public access, we recommend
-                  that you use an SSL enabled reverse proxy in front of Dokemon. Using Traefik with LetsEncrypt SSL certificate
-                </p>
-            </div>
-
-            {/* Traefik Configuration Block */}
-            <div className="mb-8">
+              <p className="mb-4 text-base">
+                We recommend that you run Dokémon on a private network whenever
+                possible.
+              </p>
+              <p className="mb-6 text-base">
+                If you are running on a VPS with only public access, we recommend
+                that you use an SSL enabled reverse proxy in front of Dokémon. Using Traefik with LetsEncrypt SSL certificate
+              </p>
+              
               <h4 className="text-lg font-semibold mb-2 text-center">Traefik Configuration Example:</h4>
-                <p className="mb-4 text-base">
-                  This is an example configuration for running Dokémon behind Traefik with LetsEncrypt SSL certificate.
-                </p>
-                <p className="text-base">
-                  Note: This is a sample configuration. Please modify it as per your requirements.
-                </p>
-            </div>
-            
-            {/* Configuration Code Block */}
-              <div className="mb-4 w-full text-left">
+              <p className="mb-4 text-base">
+                This is an example configuration for running Dokémon behind Traefik with LetsEncrypt SSL certificate.
+              </p>
+              <p className="mb-6 text-base">
+                Note: This is a sample configuration. Please modify it as per your requirements.
+              </p>
+              
+              <div className="mb-4 w-full">
                 <pre className="bg-slate-800 p-4 text-sm font-mono overflow-x-auto">
                   {traefikConfig}
                 </pre>
               </div>
-               
-            <div className="mb-8 flex justify-center">
-              <button
-                type="button"
-                className="w-24 rounded-md bg-amber-600 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-amber-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-600"
-                onClick={() => {
-                  navigator.clipboard.writeText(traefikConfig);
-                }}
-              >
-                Copy
-              </button>
-            </div>
-            
-            {/* Deployment Instructions Block */}
-            <div className="mb-8">
+              
+              <div className="mb-8 flex justify-center">
+                <button
+                  type="button"
+                  className="w-24 rounded-md bg-amber-600 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-amber-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-600"
+                  onClick={() => {
+                    navigator.clipboard.writeText(traefikConfig);
+                  }}
+                >
+                  Copy
+                </button>
+              </div>
+              
               <h4 className="text-lg font-semibold mb-2 text-center">Deployment Instructions:</h4>
-                <ol className="list-decimal pl-5 space-y-2 text-base">
-                  <li>In the DNS settings for your domain, add an A record for the Host which you have mentioned in the above config</li>
-                  <li>The A record should point to the public IP address of your virtual machine</li>
-                  <li>Create a file named compose.yaml on your server</li>
-                  <li>Copy and paste the above YAML definition into the file</li>
-                  <li>Modify the email and host. Make any other changes as per your requirements</li>
-                  <li>Run <code className="bg-gray-700 px-1 py-0.5 rounded text-sm">mkdir ./letsencrypt && mkdir /dokemondata</code></li>
-                  <li>Run <code className="bg-gray-700 px-1 py-0.5 rounded text-sm">docker compose up -d</code></li>
-                  <li>Open <code className="bg-gray-700 px-1 py-0.5 rounded text-sm">https://dokemon.example.com</code> (substitute your URL here) in the browser</li>
-                </ol>
-            </div>
-
-            {/* SSL Note Block */}
+              <ol className="list-decimal pl-5 space-y-2 mb-6 text-base">
+                <li>In the DNS settings for your domain, add an A record for the Host which you have mentioned in the above config</li>
+                <li>The A record should point to the public IP address of your virtual machine</li>
+                <li>Create a file named compose.yaml on your server</li>
+                <li>Copy and paste the above YAML definition into the file</li>
+                <li>Modify the email and host. Make any other changes as per your requirements</li>
+                <li>Run <code className="bg-gray-700 px-1 py-0.5 rounded text-sm">mkdir ./letsencrypt && mkdir /dokemondata</code></li>
+                <li>Run <code className="bg-gray-700 px-1 py-0.5 rounded text-sm">docker compose up -d</code></li>
+                <li>Open <code className="bg-gray-700 px-1 py-0.5 rounded text-sm">https://dokemon.example.com</code> (substitute your URL here) in the browser</li>
+              </ol>
+              
               <p className="text-base">
                 It can take a few seconds for the SSL certificate to be provisioned. If you get an error related to SSL, please wait for a few moments and then refresh your browser.
               </p>
+            </div>
           </div>
-        </div>
-      );
-
+        );
 
       case 'faq':
         return (
           <div className="flex flex-col items-center">
-            <div className="w-full">
+            <div className="w-full max-w-2xl">
               <h3 className="text-xl font-bold mb-6 text-center">Frequently Asked Questions</h3>
-              <ul className="text-left space-y-6 max-w-2xl mx-auto">
+              <ul className="space-y-6">
                 <li className="text-center">
                   <h4 className="text-lg font-semibold">Is this free for commercial use?</h4>
                   <p className="text-base">Yes.</p>
@@ -293,6 +276,7 @@ services:
             </div>
           </div>
         );
+
       case 'main':
       default:
         return (
@@ -317,7 +301,7 @@ services:
               <h4 className="text-lg font-bold mb-2">Manage Multiple Servers</h4>
               <Image
                 src="/screenshot-dokemon-nodes.jpg"
-                alt="Dokemon nodes management interface"
+                alt="Dokémon nodes management interface"
                 width={900}
                 height={500}
                 className="w-full"
@@ -329,7 +313,7 @@ services:
               </h4>
               <Image
                 src="/screenshot-dokemon-variables.jpg"
-                alt="Dokemon variables management interface"
+                alt="Dokémon variables management interface"
                 width={900}
                 height={500}
                 className="w-full"
@@ -339,7 +323,7 @@ services:
               <h4 className="text-lg font-bold mb-2">Deploy Compose Projects</h4>
               <Image
                 src="/screenshot-dokemon-compose-up.jpg"
-                alt="Dokemon compose project deployment interface"
+                alt="Dokémon compose project deployment interface"
                 width={900}
                 height={500}
                 className="w-full"
@@ -351,7 +335,7 @@ services:
               </h4>
               <Image
                 src="/screenshot-dokemon-containers.jpg"
-                alt="Dokemon container management interface"
+                alt="Dokémon container management interface"
                 width={900}
                 height={500}
                 className="w-full"
@@ -368,10 +352,10 @@ services:
         {/* Sidebar Menu - Fixed height */}
         <div className="w-64 bg-gray-800 p-4 flex flex-col fixed h-screen">
           <h1 className="mb-6">
-            <span className="sr-only">Dokemon</span>
+            <span className="sr-only">Dokémon</span>
             <Image
               src="/logo/dokemon-dark-medium.svg"
-              alt="Dokemon"
+              alt="Dokémon"
               width={200}
               height={50}
             />
