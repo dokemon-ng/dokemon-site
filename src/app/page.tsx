@@ -10,8 +10,7 @@ import { useState } from "react";
 const menuItems = [
   { id: 'main', title: 'Main' },
   { id: 'getting-started', title: 'Getting Started' },
-  { id: 'extra', title: 'Extra' },
-  { id: 'github', title: 'GitHub', isExternal: true, url: 'https://github.com/dokemon-ng/dokemon' }
+  { id: 'extra', title: 'Extra' }
 ];
 
 export default function Home() {
@@ -44,9 +43,9 @@ services:
     switch (activeTab) {
       case 'getting-started':
         return (
-          <>
+          <div className="flex flex-col items-center">
             <h3 className="text-lg font-bold mb-4">Get Started Now</h3>
-            <div className="mb-4 text-xs sm:text-base">
+            <div className="mb-4 text-xs sm:text-base w-full max-w-2xl">
               <pre className="bg-slate-800 p-4 sm:p-8 md:px-12 focus:outline-none font-mono">
                 {command}
               </pre>
@@ -64,7 +63,7 @@ services:
             </div>
 
             <h3 className="text-lg font-bold mb-4">Docker Compose Version</h3>
-            <div className="mb-4 text-xs sm:text-base">
+            <div className="mb-4 text-xs sm:text-base w-full max-w-2xl">
               <pre className="bg-slate-800 p-4 sm:p-8 md:px-12 focus:outline-none font-mono">
                 {compose}
               </pre>
@@ -80,12 +79,12 @@ services:
                 Copy
               </button>
             </div>
-          </>
+          </div>
         );
       case 'extra':
         return (
-          <>
-            <div className="mb-16 md:max-w-[580px]">
+          <div className="flex flex-col items-center">
+            <div className="mb-16 max-w-2xl">
               <h3 className="text-lg font-bold mb-4 text-center">
                 Production Usage
               </h3>
@@ -105,7 +104,7 @@ services:
                 </a>
               </p>
             </div>
-            <div className="mb-16 md:w-[580px]">
+            <div className="max-w-2xl">
               <h3 className="text-lg font-bold mb-4 text-center">FAQ</h3>
               <ul className="text-left flex flex-col gap-6">
                 <li>
@@ -122,12 +121,12 @@ services:
                 </li>
               </ul>
             </div>
-          </>
+          </div>
         );
       case 'main':
       default:
         return (
-          <>
+          <div className="flex flex-col items-center">
             <h2 className="text-lg mb-2 text-center font-semibold">
               Docker Container Management GUI
             </h2>
@@ -144,17 +143,17 @@ services:
               ></iframe>
             </div>
 
-            <div className="mb-10 text-center">
+            <div className="mb-10 text-center w-full max-w-4xl">
               <h4 className="font-bold mb-2">Manage Multiple Servers</h4>
               <Image
                 src="/screenshot-dokemon-nodes.jpg"
                 alt="Dokemon nodes management interface"
                 width={900}
                 height={500}
-                className="xl:max-w-[900px]"
+                className="w-full"
               />
             </div>
-            <div className="mb-10 text-center">
+            <div className="mb-10 text-center w-full max-w-4xl">
               <h4 className="font-bold mb-2">
                 Manage Variables for Different Environments
               </h4>
@@ -163,20 +162,20 @@ services:
                 alt="Dokemon variables management interface"
                 width={900}
                 height={500}
-                className="xl:max-w-[900px]"
+                className="w-full"
               />
             </div>
-            <div className="mb-10 text-center">
+            <div className="mb-10 text-center w-full max-w-4xl">
               <h4 className="font-bold mb-2">Deploy Compose Projects</h4>
               <Image
                 src="/screenshot-dokemon-compose-up.jpg"
                 alt="Dokemon compose project deployment interface"
                 width={900}
                 height={500}
-                className="xl:max-w-[900px]"
+                className="w-full"
               />
             </div>
-            <div className="mb-10 text-center">
+            <div className="mb-10 text-center w-full max-w-4xl">
               <h4 className="font-bold mb-2">
                 Manage Containers, Images, Volumes, Networks
               </h4>
@@ -185,10 +184,10 @@ services:
                 alt="Dokemon container management interface"
                 width={900}
                 height={500}
-                className="xl:max-w-[900px]"
+                className="w-full"
               />
             </div>
-          </>
+          </div>
         );
     }
   };
@@ -197,7 +196,7 @@ services:
     <>
       <main className="flex min-h-screen">
         {/* Sidebar Menu */}
-        <div className="w-64 bg-gray-800 p-4">
+        <div className="w-64 bg-gray-800 p-4 flex flex-col">
           <h1 className="mb-6">
             <span className="sr-only">Dokemon</span>
             <Image
@@ -207,33 +206,36 @@ services:
               height={50}
             />
           </h1>
-          <nav>
+          <nav className="flex-1">
             <ul className="space-y-2">
               {menuItems.map((item) => (
                 <li key={item.id}>
-                  {item.isExternal ? (
-                    <a
-                      href={item.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block px-4 py-2 text-gray-300 hover:bg-gray-700 rounded-md hover:text-white"
-                    >
-                      {item.title}
-                    </a>
-                  ) : (
-                    <button
-                      onClick={() => setActiveTab(item.id)}
-                      className={`w-full text-left px-4 py-2 rounded-md ${activeTab === item.id ? 'bg-amber-600 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white'}`}
-                    >
-                      {item.title}
-                    </button>
-                  )}
+                  <button
+                    onClick={() => setActiveTab(item.id)}
+                    className={`w-full text-left px-4 py-2 rounded-md ${activeTab === item.id ? 'bg-amber-600 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white'}`}
+                  >
+                    {item.title}
+                  </button>
                 </li>
               ))}
             </ul>
           </nav>
-          <div className="mt-8">
+          <div className="mt-auto">
             <ul className="flex flex-col gap-4">
+              <li>
+                <a
+                  className="flex items-center gap-2 text-sm text-gray-300 hover:text-white"
+                  href="https://github.com/dokemon-ng/dokemon"
+                  target="_blank"
+                >
+                  <FontAwesomeIcon
+                    icon={faGithub}
+                    className="inline-block w-5 h-5"
+                    style={{ color: "#ddd" }}
+                  />{" "}
+                  GitHub
+                </a>
+              </li>
               <li>
                 <a
                   className="flex items-center gap-2 text-sm text-gray-300 hover:text-white"
