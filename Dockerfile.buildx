@@ -57,7 +57,10 @@ RUN addgroup --system --gid 1001 nodejs && \
 COPY --from=builder /app/public ./public
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
-COPY google9490cfd647128d40.html ./
+COPY google9490cfd647128d40.html /
+RUN ls
+RUN ls ..
+RUN ls /
 
 USER nextjs
 
