@@ -266,7 +266,7 @@ services:
                   <li>Access the web interface at <code className="bg-gray-700 px-1 py-0.5 rounded text-sm">http://your-server-ip:8008</code></li>
                 </ol>
                 <p className="mt-4 text-base">
-                  Note: If you&aposre running this on a home network with DHCP, consider using <code className="bg-gray-700 px-1 py-0.5 rounded text-sm">network_mode: &quot;host&quot;</code> instead of the port mappings.
+                  Note: If you&apos;re running this on a home network with DHCP, consider using <code className="bg-gray-700 px-1 py-0.5 rounded text-sm">network_mode: &quot;host&quot;</code> instead of the port mappings.
                 </p>
               </div>
             </div>
