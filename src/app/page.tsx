@@ -219,14 +219,12 @@ services:
             {/* Traefik Configuration Block */}
             <div className="mb-8">
               <h4 className="text-lg font-semibold mb-2 text-center">Traefik Configuration Example:</h4>
-              <div className="bg-slate-800 p-6 rounded-lg">
                 <p className="mb-4 text-base">
                   This is an example configuration for running Dokémon behind Traefik with LetsEncrypt SSL certificate.
                 </p>
                 <p className="text-base">
                   Note: This is a sample configuration. Please modify it as per your requirements.
                 </p>
-              </div>
             </div>
             
             {/* Configuration Code Block */}
@@ -251,7 +249,6 @@ services:
             {/* Deployment Instructions Block */}
             <div className="mb-8">
               <h4 className="text-lg font-semibold mb-2 text-center">Deployment Instructions:</h4>
-              <div className="bg-slate-800 p-6 rounded-lg">
                 <ol className="list-decimal pl-5 space-y-2 text-base">
                   <li>In the DNS settings for your domain, add an A record for the Host which you have mentioned in the above config</li>
                   <li>The A record should point to the public IP address of your virtual machine</li>
@@ -262,15 +259,12 @@ services:
                   <li>Run <code className="bg-gray-700 px-1 py-0.5 rounded text-sm">docker compose up -d</code></li>
                   <li>Open <code className="bg-gray-700 px-1 py-0.5 rounded text-sm">https://dokemon.example.com</code> (substitute your URL here) in the browser</li>
                 </ol>
-              </div>
             </div>
 
             {/* SSL Note Block */}
-            <div className="bg-slate-800 p-6 rounded-lg">
               <p className="text-base">
                 It can take a few seconds for the SSL certificate to be provisioned. If you get an error related to SSL, please wait for a few moments and then refresh your browser.
               </p>
-            </div>
           </div>
         </div>
       );
