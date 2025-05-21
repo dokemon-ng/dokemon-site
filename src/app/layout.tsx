@@ -5,7 +5,7 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Dokemon - Docker Container Management GUI",
+  title: "Dokémon - Docker Container Management GUI",
   description: "Friendly Docker Container management GUI",
 };
 
