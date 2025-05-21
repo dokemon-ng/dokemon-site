@@ -94,11 +94,7 @@ services:
         return (
           <div className="flex flex-col items-center">
             <h3 className="text-xl font-bold mb-4">Getting Started Now</h3>
-            <div className="mb-4 w-full">
-              <pre className="bg-slate-800 p-4 text-sm font-mono overflow-x-auto">
-                {command}
-              </pre>
-            </div>
+            <br>
             <h3 className="text-xl font-bold mb-4">Dokemon with Local Storage</h3>
             <div className="mb-4 w-full">
               <pre className="bg-slate-800 p-4 text-sm font-mono overflow-x-auto">
