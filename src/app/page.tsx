@@ -51,37 +51,39 @@ sudo docker run -p 9090:9090 \\
 
   const compose = `version: "3"
 services:
-    dokemon-server:
-        ports:
-            - 9090:9090
-        volumes:
-            - /dokemondata:/data
-            - /var/run/docker.sock:/var/run/docker.sock
-        restart: unless-stopped
-        container_name: dokemon-server
-        image: javastraat/dokemon-server:latest`;
+  dokemon-server:
+    container_name: dokemon-server
+    image: javastraat/dokemon-server:latest
+    ports:
+      - 9090:9090
+    volumes:
+      - /dokemondata:/data
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: unless-stopped
+`;
 
   const composeVolume = `version: "3"
 services:
-    dokemon-server:
-        ports:
-            - 9090:9090
-        volumes:
-            - dokemondata:/data
-            - /var/run/docker.sock:/var/run/docker.sock
-        restart: unless-stopped
-        container_name: dokemon-server
-        image: javastraat/dokemon-server:latest
+  dokemon-server:
+    container_name: dokemon-server
+    image: javastraat/dokemon-server:latest
+    ports:
+      - 9090:9090
+    volumes:
+      - dokemondata:/data
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: unless-stopped
 
 volumes:
-    dokemondata:`;
+    dokemondata:
+`;
 
   const traefikConfig = `version: "3.3"
 
 services:
   traefik:
-    image: "traefik:v2.10"
     container_name: "traefik"
+    image: "traefik:v2.10"
     command:
       - "--log.level=DEBUG"
       - "--accesslog=true"
@@ -100,8 +102,8 @@ services:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
 
   dokemon:
-    image: javastraat/dokemon-server:latest
     container_name: dokemon-server
+    image: javastraat/dokemon-server:latest
     restart: unless-stopped
     labels:
       - "traefik.enable=true"
@@ -112,7 +114,8 @@ services:
       - 9090:9090
     volumes:
       - /dokemondata:/data
-      - /var/run/docker.sock:/var/run/docker.sock`;
+      - /var/run/docker.sock:/var/run/docker.sock
+`;
 
   const piholeCompose = `
 # More info at https://github.com/pi-hole/docker-pi-hole/ and https://docs.pi-hole.net/
@@ -140,8 +143,8 @@ services:
   const openspeedtestCompose = `
 services:
   speedtest:
-    image: openspeedtest/latest
     container_name: openspeedtest
+    image: openspeedtest/latest
     ports:
       - '3000:3000'
       - '3001:3001'
@@ -151,8 +154,8 @@ services:
   const dokemonsiteCompose = `
 services:
   dokemon-site:
-    image: javastraat/dokemon-site:latest
     container_name: dokemon-site
+    image: javastraat/dokemon-site:latest
     ports:
       - "3000:3000"
     restart: unless-stopped
