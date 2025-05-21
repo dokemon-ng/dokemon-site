@@ -1,5 +1,5 @@
+@echo off
 git pull
-docker build -t javastraat/dokemon-site -f Dockerfile .
-docker push javastraat/dokemon-site:latest
+docker buildx build --platform linux/amd64,linux/arm64 -t javastraat/dokemon-site:latest -f .\Dockerfile.buildx --push .
 pause
 

@@ -47,6 +47,7 @@ RUN yarn build
 FROM node:20.17.0-alpine AS runner
 WORKDIR /app
 
+RUN npm install sharp --platform=linuxmusl-$(uname -m)
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
 
