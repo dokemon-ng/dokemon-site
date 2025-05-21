@@ -92,60 +92,71 @@ services:
     switch (activeTab) {
       case 'getting-started':
         return (
- 	  <h3 className="text-xl font-bold mb-4">Get Started Now</h3>
           <div className="flex flex-col items-center">
-            <h3 className="text-xl font-bold mb-4">Get Started Now</h3>
-            <div className="mb-4 w-full">
-              <pre className="bg-slate-800 p-4 text-sm font-mono overflow-x-auto">
-                {command}
-              </pre>
-            </div>
-            <div className="mb-8">
-              <button
-                type="button"
-                className="w-24 rounded-md bg-amber-600 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-amber-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-600"
-                onClick={() => {
-                  navigator.clipboard.writeText(command);
-                }}
-              >
-                Copy
-              </button>
-            </div>
-
-            <h3 className="text-xl font-bold mb-4">Docker Volume Version</h3>
-            <div className="mb-4 w-full">
-              <pre className="bg-slate-800 p-4 text-sm font-mono overflow-x-auto">
-                {volumeCommand}
-              </pre>
-            </div>
-            <div className="mb-8">
-              <button
-                type="button"
-                className="w-24 rounded-md bg-amber-600 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-amber-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-600"
-                onClick={() => {
-                  navigator.clipboard.writeText(volumeCommand);
-                }}
-              >
-                Copy
-              </button>
+            {/* Main Getting Started Header */}
+            <h2 className="text-2xl font-bold mb-8 text-center">Getting Started with Dokemon</h2>
+            
+            {/* Directory Version Section */}
+            <div className="w-full mb-12">
+              <h3 className="text-xl font-bold mb-4 text-center">Directory Version</h3>
+              <div className="mb-4 w-full">
+                <pre className="bg-slate-800 p-4 text-sm font-mono overflow-x-auto">
+                  {command}
+                </pre>
+              </div>
+              <div className="mb-8 flex justify-center">
+                <button
+                  type="button"
+                  className="w-24 rounded-md bg-amber-600 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-amber-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-600"
+                  onClick={() => {
+                    navigator.clipboard.writeText(command);
+                  }}
+                >
+                  Copy
+                </button>
+              </div>
             </div>
 
-            <h3 className="text-xl font-bold mb-4">Docker Compose Version</h3>
-            <div className="mb-4 w-full">
-              <pre className="bg-slate-800 p-4 text-sm font-mono overflow-x-auto">
-                {compose}
-              </pre>
+            {/* Volume Version Section */}
+            <div className="w-full mb-12">
+              <h3 className="text-xl font-bold mb-4 text-center">Volume Version</h3>
+              <div className="mb-4 w-full">
+                <pre className="bg-slate-800 p-4 text-sm font-mono overflow-x-auto">
+                  {volumeCommand}
+                </pre>
+              </div>
+              <div className="mb-8 flex justify-center">
+                <button
+                  type="button"
+                  className="w-24 rounded-md bg-amber-600 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-amber-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-600"
+                  onClick={() => {
+                    navigator.clipboard.writeText(volumeCommand);
+                  }}
+                >
+                  Copy
+                </button>
+              </div>
             </div>
-            <div className="mb-8">
-              <button
-                type="button"
-                className="w-24 rounded-md bg-amber-600 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-amber-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-600"
-                onClick={() => {
-                  navigator.clipboard.writeText(compose);
-                }}
-              >
-                Copy
-              </button>
+
+            {/* Docker Compose Section */}
+            <div className="w-full mb-12">
+              <h3 className="text-xl font-bold mb-4 text-center">Docker Compose Version</h3>
+              <div className="mb-4 w-full">
+                <pre className="bg-slate-800 p-4 text-sm font-mono overflow-x-auto">
+                  {compose}
+                </pre>
+              </div>
+              <div className="mb-8 flex justify-center">
+                <button
+                  type="button"
+                  className="w-24 rounded-md bg-amber-600 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-amber-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-600"
+                  onClick={() => {
+                    navigator.clipboard.writeText(compose);
+                  }}
+                >
+                  Copy
+                </button>
+              </div>
             </div>
           </div>
         );
