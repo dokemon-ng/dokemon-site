@@ -6,7 +6,7 @@ export default function ComposeSamples() {
       <h2 className="text-2xl font-bold mb-8 text-center">Compose Samples</h2>
 
       <div className="w-full mb-12 px-4 md:px-0">
-        <h3 className="text-xl font-bold mb-4 text-center">Dokéon Website</h3>
+        <h3 className="text-xl font-bold mb-4 text-center">Dokémon Website</h3>
         <div className="mb-4 w-full">
           <pre className="bg-slate-800 p-4 text-sm font-mono overflow-x-auto rounded">
             {dokemonsiteCompose}
