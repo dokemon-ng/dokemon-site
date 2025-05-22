@@ -24,7 +24,6 @@ export default function Home() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Add this useEffect to handle scroll to top on tab change
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [activeTab]);
