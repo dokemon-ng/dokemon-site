@@ -28,10 +28,12 @@ export default function Home() {
   // Scroll to top when activeTab changes
   useEffect(() => {
     if (contentRef.current) {
-      contentRef.current.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
+//      contentRef.current.scrollTo({
+//        top: 0,
+//        behavior: 'smooth'
+//Â      });
+        contentRef.current.scrollTo(0, 0); // <-- This makes it instant
+
     }
   }, [activeTab]);
 
