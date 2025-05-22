@@ -26,26 +26,6 @@ export default function ComposeSamples() {
       </div>
 
       <div className="w-full mb-12 px-4 md:px-0">
-        <h3 className="text-xl font-bold mb-4 text-center">PiHole - Network-wide Ad Blocking</h3>
-        <div className="mb-4 w-full">
-          <pre className="bg-slate-800 p-4 text-sm font-mono overflow-x-auto rounded">
-            {piholeCompose}
-          </pre>
-        </div>
-        <div className="mb-8 flex justify-center">
-          <button
-            type="button"
-            className="w-24 rounded-md bg-amber-600 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-amber-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-600"
-            onClick={() => {
-              navigator.clipboard.writeText(piholeCompose);
-            }}
-          >
-            Copy
-          </button>
-        </div>
-      </div>
-
-      <div className="w-full mb-12 px-4 md:px-0">
         <h3 className="text-xl font-bold mb-4 text-center">OpenSpeedTest</h3>
         <div className="mb-4 w-full">
           <pre className="bg-slate-800 p-4 text-sm font-mono overflow-x-auto rounded">
@@ -64,6 +44,27 @@ export default function ComposeSamples() {
           </button>
         </div>
       </div>
+
+      <div className="w-full mb-12 px-4 md:px-0">
+        <h3 className="text-xl font-bold mb-4 text-center">PiHole - Network-wide Ad Blocking</h3>
+        <div className="mb-4 w-full">
+          <pre className="bg-slate-800 p-4 text-sm font-mono overflow-x-auto rounded">
+            {piholeCompose}
+          </pre>
+        </div>
+        <div className="mb-8 flex justify-center">
+          <button
+            type="button"
+            className="w-24 rounded-md bg-amber-600 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-amber-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-600"
+            onClick={() => {
+              navigator.clipboard.writeText(piholeCompose);
+            }}
+          >
+            Copy
+          </button>
+        </div>
+      </div>
+      
     </div>
   );
 }
