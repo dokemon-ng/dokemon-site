@@ -66,7 +66,7 @@ export default function Sidebar({
           <li>
             <a
               className="flex items-center gap-2 text-sm text-gray-300 hover:text-white"
-              href="https://github.com/dokemon-ng/Software/issues"
+              href="https://github.com/dokemon-ng/dokemon/issues"
               target="_blank"
               rel="noopener noreferrer"
             >
