@@ -24,6 +24,10 @@ export default function Home() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [activeTab]);
+
   const renderContent = () => {
     switch (activeTab) {
       case 'getting-started':
