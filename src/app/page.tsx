@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { menuItems } from "./constants/menuItems";
 import Sidebar from "./components/Sidebar";
 import MobileMenuButton from "./components/MobileMenuButton";
@@ -14,6 +14,7 @@ export default function Home() {
   const [activeTab, setActiveTab] = useState('main');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const contentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleResize = () => {
@@ -24,9 +25,14 @@ export default function Home() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Add this useEffect to handle scroll to top on tab change
+  // Scroll to top when activeTab changes
   useEffect(() => {
-    window.scrollTo(0, 0);
+    if (contentRef.current) {
+      contentRef.current.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
   }, [activeTab]);
 
   const renderContent = () => {
@@ -47,7 +53,7 @@ export default function Home() {
 
   return (
     <>
-      <main className="flex flex-col md:flex-row h-screen overflow-hidden">
+      <main className="flex flex-col md:flex-row h-screen">
         <MobileMenuButton 
           isMobileMenuOpen={isMobileMenuOpen} 
           setIsMobileMenuOpen={setIsMobileMenuOpen} 
@@ -66,7 +72,10 @@ export default function Home() {
           />
         </div>
   
-        <div className="flex-1 overflow-y-auto h-full">
+        <div 
+          ref={contentRef}
+          className="flex-1 overflow-y-auto h-full scrollbar-hide"
+        >
           <div className="flex justify-center w-full">
             <div className="w-full max-w-6xl px-4 md:px-8 py-8">
               {renderContent()}
