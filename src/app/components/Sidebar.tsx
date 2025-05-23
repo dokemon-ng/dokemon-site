@@ -77,7 +77,7 @@ export default function Sidebar({
                 className="inline-block w-5 h-5"
                 style={{ color: "#ddd" }}
               />{" "}
-              Report Issues
+              Open Issues
             </a>
           </li>
           <li>
@@ -96,7 +96,7 @@ export default function Sidebar({
             </a>
           </li>
         </ul>
-        <div className="mt-4 pt-4 border-t border-gray-700 text-xs text-gray-500 text-center">
+        <div className="mt-2 text-xs text-gray-500 text-center">
           Dokémon v{VERSION}
         </div>
       </div>
