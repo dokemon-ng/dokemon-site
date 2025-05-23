@@ -1,0 +1,1 @@
+../../../dokemon/web/src/lib/version.ts
