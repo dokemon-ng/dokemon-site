@@ -2,7 +2,7 @@ import { menuItems } from "../constants/menuItems";
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDiscord, faGithub } from "@fortawesome/free-brands-svg-icons";
-import { VERSION } from "../../../dokemon/web/src/lib/version"; // Updated import path
+import { VERSION } from "../../dokemon/web/src/lib/version"; // Updated import path
 
 
 export default function Sidebar({
