@@ -2,7 +2,7 @@ import { menuItems } from "../constants/menuItems";
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDiscord, faGithub } from "@fortawesome/free-brands-svg-icons";
-import { VERSION } from "../version"; // Direct import from sibling file
+import { VERSION } from "../version";
 
 export default function Sidebar({
   activeTab,
@@ -24,7 +24,6 @@ export default function Sidebar({
           alt="Dokémon"
           width={200}
           height={50}
-          priority
         />
       </h1>
       <nav className="flex-1 overflow-y-auto">
@@ -96,10 +95,10 @@ export default function Sidebar({
             </a>
           </li>
         </ul>
-        <div className="mt-2 text-xs text-gray-500 text-center">
-          Dokémon v{VERSION}
-        </div>
       </div>
+<div className="mt-4 pt-4 text-xs text-gray-500 text-center">
+          Dokémon v{VERSION}
+</div>
     </>
   );
 }
