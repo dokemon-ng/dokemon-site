@@ -2,6 +2,8 @@ import { menuItems } from "../constants/menuItems";
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDiscord, faGithub } from "@fortawesome/free-brands-svg-icons";
+import { VERSION } from "../../../dokemon/web/src/lib/version"; // Updated import path
+
 
 export default function Sidebar({
   activeTab,
@@ -94,6 +96,10 @@ export default function Sidebar({
             </a>
           </li>
         </ul>
+        {/* Version display using the imported VERSION constant */}
+        <div className="mt-4 pt-4 border-t border-gray-700 text-xs text-gray-500 text-center">
+          Dokémon v{VERSION}
+        </div>
       </div>
     </>
   );
