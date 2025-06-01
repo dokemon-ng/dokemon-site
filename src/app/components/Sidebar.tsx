@@ -20,7 +20,7 @@ export default function Sidebar({
       <h1 className="mb-6 hidden md:block">
         <span className="sr-only">Dokémon</span>
         <Image
-          src="/logo/dokemon-dark-medium.svg"
+          src="/logo/dokemon-dark-small.png"
           alt="Dokémon"
           width={200}
           height={50}
