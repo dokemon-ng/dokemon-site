@@ -14,7 +14,7 @@ export default function MobileMenuButton({
       <h1>
         <span className="sr-only">Dokémon</span>
         <Image
-          src="/logo/dokemon-dark-medium.svg"
+          src="/logo/dokemon-dark-small.png"
           alt="Dokémon"
           width={150}
           height={40}
