@@ -1,7 +1,11 @@
 ### ✍️ Dokémon Website
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/dokemon-ng/.github/refs/heads/main/dokemon-logo.png" width="500" alt="Dokémon (Dokemon) Logo">
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/dokemon-ng/.github/refs/heads/main/dokemon-logo.png" width="500">
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/dokemon-ng/.github/refs/heads/main/dokemon-logo-rect4.png" width="500">
+  <img alt="Dokémon (Dokemon) Logo" src="https://raw.githubusercontent.com/dokemon-ng/.github/refs/heads/main/dokemon-logo.png" width="500">
+</picture>
 </div>
 
 ![Supports arm64 Architecture][arm64-shield] ![Supports amd64 Architecture][amd64-shield] ![Supports armv7 Architecture][armv7-shield]
