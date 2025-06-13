@@ -26,7 +26,6 @@ export default function Sidebar({
           width={200}
           height={50}
         />
-      <ThemeToggle />
       </h1>
       <nav className="flex-1 overflow-y-auto">
         <ul className="space-y-2">
@@ -99,6 +98,7 @@ export default function Sidebar({
         </ul>
       </div>
 <div className="mt-4 pt-4 text-xs text-gray-500 text-center">
+      <ThemeToggle />
           Dokémon v{VERSION}
 </div>
     </>
