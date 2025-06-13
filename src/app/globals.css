@@ -6,7 +6,7 @@
 /* Remove the @media (prefers-color-scheme: dark) block */
 
 body {
-  @apply bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100;
+  @apply bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100;
   /* This sets default light/dark backgrounds and text colors */
 }
 
