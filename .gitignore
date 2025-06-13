@@ -16,6 +16,7 @@
 # production
 /build
 make-site-windows.bat 
+make-site-buildx.sh 
 
 # misc
 .DS_Store
