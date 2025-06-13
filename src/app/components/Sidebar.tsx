@@ -98,12 +98,13 @@ export default function Sidebar({
         </ul>
       </div>
 <div className="mt-4 pt-4 border-t border-gray-700 dark:border-gray-600">
-  <div className="text-xs text-gray-500 text-center mb-2">
-    Dokémon v{VERSION}
-  </div>
-  <div className="flex justify-center">
-    <ThemeToggle />
-  </div>
+
+<div className="mt-4 pt-4 text-xs text-gray-500 text-center">
+  Dokémon v{VERSION}
+  {'  '}
+  <ThemeToggle className="inline-block" />
+</div>
+
 </div>
     </>
   );
