@@ -98,8 +98,9 @@ export default function Sidebar({
         </ul>
       </div>
 <div className="mt-4 pt-4 text-xs text-gray-500 text-center">
+          Dokémon v{VERSION} 
       <ThemeToggle />
-          Dokémon v{VERSION}
+
 </div>
     </>
   );
