@@ -1,4 +1,5 @@
 import { menuItems } from "../constants/menuItems";
+import { ThemeToggle } from '../components/ThemeToggle'
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDiscord, faGithub } from "@fortawesome/free-brands-svg-icons";
@@ -25,6 +26,7 @@ export default function Sidebar({
           width={200}
           height={50}
         />
+      <ThemeToggle />
       </h1>
       <nav className="flex-1 overflow-y-auto">
         <ul className="space-y-2">
