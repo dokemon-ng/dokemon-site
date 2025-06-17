@@ -3,6 +3,7 @@ sudo mkdir /dokemondata
 
 # Run Dokémon
 sudo docker run -p 9090:9090 \\
+      --net=host \\
       -v /dokemondata:/data \\
       -v /var/run/docker.sock:/var/run/docker.sock \\
       --restart unless-stopped \\
@@ -13,6 +14,7 @@ sudo docker volume create dokemondata
 
 # Run Dokémon with volume
 sudo docker run -p 9090:9090 \\
+      --net=host \\
       -v dokemondata:/data \\
       -v /var/run/docker.sock:/var/run/docker.sock \\
       --restart unless-stopped \\
